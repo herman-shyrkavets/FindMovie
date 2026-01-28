@@ -327,32 +327,6 @@ response = requests.get(f"{BASE_URL}/api/v1/movies/tt1375666")
 movie = response.json()
 print(movie)
 ```
-
-## Тестирование
-
-Проект содержит unit тесты для всех основных компонентов.
-
-### Запуск тестов
-
-```bash
-# Установите тестовые зависимости
-poetry install --with test
-
-# Запустите все тесты
-poetry run pytest
-
-# Запустите с подробным выводом
-poetry run pytest -v
-
-# Запустите конкретный файл
-poetry run pytest test/unit/app_layer/test_movie_service.py
-
-# Запустите с покрытием кода
-poetry run pytest --cov=src --cov-report=html
-```
-
-Подробнее о тестах см. в [test/README.md](test/README.md)
-
 ## Поток данных
 
 1. **Запрос приходит** в API Layer (роутер)
