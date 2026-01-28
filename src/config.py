@@ -24,7 +24,7 @@ class PostgresSettings(BaseSettings):
     )
 
 class OmdbSettings(BaseSettings):
-    api_key: str  # Pydantic сам склеит префикс OMDB_ + поле api_key = OMDB_API_KEY
+    api_key: str
 
     model_config = SettingsConfigDict(
         env_file=".env",
