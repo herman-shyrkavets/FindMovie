@@ -1,0 +1,44 @@
+  services:
+    test_project:
+      build: .
+      container_name: test_project
+      restart: always
+      depends_on:
+        db:
+          condition: service_healthy
+      env_file:
+        - .env
+      ports:
+        - "${APP_PORT}:${APP_PORT}"
+      volumes:
+          - .:/PythonProject5
+      healthcheck:
+        test: [ "CMD", "sh", "-c", "curl -f http://localhost:$APP_PORT/ht/" ]
+        interval: 30s
+        retries: 3
+        start_period: 30s
+        timeout: 10s
+      entrypoint: [ "sh", "/PythonProject5/entrypoint.sh" ]
+
+    db:
+      image: postgres:15
+      container_name: postgres
+      restart: always
+      env_file:
+        - .env
+      environment:
+        POSTGRES_DB: ${POSTGRES_DB}
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      ports:
+        - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+      healthcheck:
+        test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+
+  volumes:
+    postgres_data:
