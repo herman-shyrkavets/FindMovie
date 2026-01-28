@@ -128,7 +128,7 @@ PythonProject5/
 │   ├── config.py               # Конфигурация приложения
 │   ├── depends.py              # Dependency Injection
 │   └── main.py                 # Точка входа
-├── migrations/                 # Alembic миграции                      # Тесты
+├── migrations/                 # Alembic миграции
 ├── docker-compose.yaml         # Docker Compose конфигурация
 ├── Dockerfile                  # Docker образ
 ├── entrypoint.sh              # Скрипт запуска
