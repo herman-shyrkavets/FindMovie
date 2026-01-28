@@ -23,6 +23,7 @@ class PostgresSettings(BaseSettings):
         extra="ignore",
     )
 
+
 class OmdbSettings(BaseSettings):
     api_key: str
 
